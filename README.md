@@ -13,10 +13,19 @@ autonomous driving or augmented reality.
 For more details: http://cocodataset.org/#panoptic-2018
 ## Install
 * By using conda  
-The `environment.yaml` provided in this repo assume you have cuda 10.0 and will install the 
+The `environment.yaml` provided in this repo assumes you have `cuda 10.0` and will install the 
 corresponding pytorch binaries.
 ```bash
 conda env create -n panoptic_segmentation --file=environment.yaml
 ```
 
 * By using docker  
+
+
+## Known issues
+- Cannot run on CPU (need to be retrain by using pytorch 1.0)
+
+## To improve
+- using deeplabv3+ instead of deeplabv2
+- retrain the models to the right classes (instead of remapping)
+- improving accuracy by retraining the models directly on the coco panoptic segmentation dataset
