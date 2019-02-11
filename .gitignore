@@ -1,6 +1,9 @@
 # pip files
 panoseg.egg-info/
 
+# models parameters
+models_parameters/
+
 # zappa
 zappa_settings.json
 
