@@ -1,3 +1,10 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
-setup(name='panoseg', version='0.0.1', packages=find_packages())
+setup(
+    name='panoptic',
+    packages=find_packages(),
+    version='0.0.1',
+    description='Implementation of https://arxiv.org/abs/1801.00868',
+    author='Yann LG',
+    license='',
+)
