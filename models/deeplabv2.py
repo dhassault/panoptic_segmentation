@@ -5,6 +5,8 @@
 # URL:      http://kazuto1011.github.io
 # Created:  2017-11-19
 
+from collections import OrderedDict
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -49,22 +51,13 @@ class DeepLabV2(nn.Sequential):
                 m.eval()
 
 
-class CrossEntropyLoss2d(nn.Module):
-    def __init__(self, weight=None, size_average=True, ignore_index=-1):
-        super(CrossEntropyLoss2d, self).__init__()
-        self.nll_loss = nn.NLLLoss(weight, size_average, ignore_index)
+if __name__ == "__main__":
+    model = DeepLabV2(
+        n_classes=21, n_blocks=[3, 4, 23, 3], atrous_rates=[6, 12, 18, 24]
+    )
+    model.eval()
+    image = torch.randn(1, 3, 513, 513)
 
-    def forward(self, inputs, targets):
-        return self.nll_loss(F.log_softmax(inputs, dim=1), targets)
-
-#
-# if __name__ == "__main__":
-#     model = DeepLabV2(
-#         n_classes=21, n_blocks=[3, 4, 23, 3], atrous_rates=[6, 12, 18, 24]
-#     )
-#     model.eval()
-#     image = torch.randn(1, 3, 513, 513)
-#
-#     print(model)
-#     print("input:", image.shape)
-#     print("output:", model(image).shape)
+    print(model)
+    print("input:", image.shape)
+    print("output:", model(image).shape)
