@@ -1,3 +1,0 @@
-[submodule "maskrcnn-benchmark"]
-	path = maskrcnn-benchmark
-	url = https://github.com/facebookresearch/maskrcnn-benchmark.git
