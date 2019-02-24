@@ -50,9 +50,13 @@ conda env create -n panoptic_segmentation --file=environment.yaml
 
 ## Models used
 For the instance segmentation, this code uses the pre-trained mask-rcnn available on gluoncv as it is.
-For the semantic segmetnation, PSPNet (resnet50) is used and trained for 1 epoch only on coco stuff dataset (with the stuff panoptic classes).
+For the semantic segmentation, PSPNet (resnet50) is used and trained for 1 epoch only on coco stuff dataset (with the stuff panoptic classes).
 
 ## Known issues
+- not sure what happened about the class 0 of PSPNet. I removed it for now.
+- for the inference in the semantic segmentation, I'm using the method `demo`, 
+it's very bad I know but I couldn't manage the huge arrays with mxnet... I'll improve it later.
+- to convert the outputs of both semantic and instance segmentation, we have to use python2...
 
 
 ## To do

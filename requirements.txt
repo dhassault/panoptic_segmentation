@@ -2,3 +2,12 @@
 -e .
 
 # external requirements
+mxnet-cu100mkl
+gluoncv
+tqdm
+numpy
+cython
+pycocotools
+tensorflow
+tensorboard
+tensorboardx
