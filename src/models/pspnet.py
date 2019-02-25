@@ -1,9 +1,9 @@
 """Pyramid Scene Parsing Network"""
-from mxnet.gluon import nn
-from mxnet.context import cpu
-from mxnet.gluon.nn import HybridBlock
-from gluoncv.model_zoo.segbase import SegBaseModel
 from gluoncv.model_zoo.fcn import _FCNHead
+from gluoncv.model_zoo.segbase import SegBaseModel
+from mxnet.context import cpu
+from mxnet.gluon import nn
+from mxnet.gluon.nn import HybridBlock
 
 
 class PSPNet(SegBaseModel):
@@ -111,43 +111,3 @@ class _PSPHead(HybridBlock):
     def hybrid_forward(self, F, x):
         x = self.psp(x)
         return self.block(x)
-
-
-def get_psp(dataset='pascal_voc', backbone='resnet50', pretrained=False,
-            root='~/.mxnet/models', ctx=cpu(0), pretrained_base=True, **kwargs):
-    r"""Pyramid Scene Parsing Network
-    Parameters
-    ----------
-    dataset : str, default pascal_voc
-        The dataset that model pretrained on. (pascal_voc, ade20k)
-    pretrained : bool or str
-        Boolean value controls whether to load the default pretrained weights for model.
-        String value represents the hashtag for a certain version of pretrained weights.
-    ctx : Context, default CPU
-        The context in which to load the pretrained weights.
-    root : str, default '~/.mxnet/models'
-        Location for keeping the model parameters.
-    pretrained_base : bool or str, default True
-        This will load pretrained backbone network, that was trained on ImageNet.
-
-    Examples
-    --------
-    >>> model = get_fcn(dataset='pascal_voc', backbone='resnet50', pretrained=False)
-    >>> print(model)
-    """
-    acronyms = {
-        'pascal_voc': 'voc',
-        'pascal_aug': 'voc',
-        'ade20k': 'ade',
-        'coco': 'coco',
-        'citys': 'citys',
-    }
-    from ..data import datasets
-    # infer number of classes
-    model = PSPNet(datasets[dataset].NUM_CLASS, backbone=backbone,
-                   pretrained_base=pretrained_base, ctx=ctx, **kwargs)
-    if pretrained:
-        from .model_store import get_model_file
-        model.load_parameters(get_model_file('psp_%s_%s' % (backbone, acronyms[dataset]),
-                                             tag=pretrained, root=root), ctx=ctx)
-    return model

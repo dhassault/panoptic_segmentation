@@ -5,8 +5,8 @@ import os
 import mxnet as mx
 from mxnet import autograd
 from mxnet.gluon import nn
-from ..faster_rcnn.faster_rcnn import FasterRCNN
-from .rcnn_target import MaskTargetGenerator
+from gluoncv.model_zoo.faster_rcnn import FasterRCNN
+from gluoncv.model_zoo.mask_rcnn.rcnn_target import MaskTargetGenerator
 
 __all__ = ['MaskRCNN', 'get_mask_rcnn',
            'mask_rcnn_resnet50_v1b_coco']
@@ -25,6 +25,7 @@ class Mask(nn.HybridBlock):
         Used to determine number of hidden channels
 
     """
+
     def __init__(self, batch_images, num_classes, mask_channels, **kwargs):
         super(Mask, self).__init__(**kwargs)
         self._batch_images = batch_images
@@ -76,6 +77,7 @@ class MaskRCNN(FasterRCNN):
         Number of channels in mask prediction
 
     """
+
     def __init__(self, features, top_features, classes,
                  mask_channels=256, rcnn_max_dets=1000, **kwargs):
         super(MaskRCNN, self).__init__(features, top_features, classes,
@@ -107,11 +109,11 @@ class MaskRCNN(FasterRCNN):
         """
         if autograd.is_training():
             cls_pred, box_pred, rpn_box, samples, matches, \
-                raw_rpn_score, raw_rpn_box, anchors, top_feat = \
+            raw_rpn_score, raw_rpn_box, anchors, top_feat = \
                 super(MaskRCNN, self).hybrid_forward(F, x, gt_box)
             mask_pred = self.mask(top_feat)
             return cls_pred, box_pred, mask_pred, rpn_box, samples, matches, \
-                 raw_rpn_score, raw_rpn_box, anchors
+                   raw_rpn_score, raw_rpn_box, anchors
         else:
             ids, scores, boxes, feat = \
                 super(MaskRCNN, self).hybrid_forward(F, x)
@@ -165,6 +167,7 @@ class MaskRCNN(FasterRCNN):
             # ids (B, N, 1), scores (B, N, 1), boxes (B, N, 4), masks (B, N, PS*2, PS*2)
             return ids, scores, boxes, masks
 
+
 def get_mask_rcnn(name, dataset, pretrained=False, ctx=mx.cpu(),
                   root=os.path.join('~', '.mxnet', 'models'), **kwargs):
     r"""Utility function to return mask rcnn networks.
@@ -195,6 +198,7 @@ def get_mask_rcnn(name, dataset, pretrained=False, ctx=mx.cpu(),
         full_name = '_'.join(('mask_rcnn', name, dataset))
         net.load_parameters(get_model_file(full_name, tag=pretrained, root=root), ctx=ctx)
     return net
+
 
 def mask_rcnn_resnet50_v1b_coco(pretrained=False, pretrained_base=True, **kwargs):
     r"""Mask RCNN model from the paper
