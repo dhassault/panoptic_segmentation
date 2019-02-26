@@ -130,11 +130,6 @@ class PanopticSegmentation:
             sem_by_image[sem['image_id']].append(sem)
 
         imgs_ids_all = img_id2img.keys()
-        # cpu_num = multiprocessing.cpu_count()
-        # img_ids_split = np.array_split(imgs_ids_all, cpu_num)
-        # print("Number of cores: {}, images per core: {}".format(cpu_num, len(img_ids_split[0])))
-        # workers = multiprocessing.Pool(processes=cpu_num)
-        # processes = []
         panoptic_json = []
         combined_segmentations = self.combine_to_panoptic(imgs_ids_all, img_id2img, inst_by_image,
                                                           sem_by_image, segmentations_folder, overlap_thr,
@@ -155,12 +150,12 @@ class PanopticSegmentation:
 
 
 if __name__ == "__main__":
-    semseg_json_file = '/home/yann/PycharmProjects/panoptic_segmentation/data/annotations/semantic_segmentation_mini_test2017.json'
-    instseg_json_file = '/home/yann/PycharmProjects/panoptic_segmentation/data/annotations/instance_segmentation_mini_test2017.json'
-    images_json_file = '/home/yann/PycharmProjects/panoptic_segmentation/data/annotations/mini_test.json'
-    categories_json_file = '/home/yann/PycharmProjects/panoptic_segmentation/src/panopticapi/panoptic_coco_categories.json'
-    segmentations_folder = '/home/yann/PycharmProjects/panoptic_segmentation/data/results/'
-    panoptic_json_file = '/home/yann/PycharmProjects/panoptic_segmentation/data/annotations/panoptic_results_mini_test2017.json'
+    semseg_json_file = 'data/annotations/semantic_segmentation_mini_test2017.json'
+    instseg_json_file = 'data/annotations/instance_segmentation_mini_test2017.json'
+    images_json_file = 'data/annotations/mini_test.json'
+    categories_json_file = 'src/panopticapi/panoptic_coco_categories.json'
+    segmentations_folder = 'data/results/'
+    panoptic_json_file = 'data/annotations/panoptic_results_mini_test2017.json'
     confidence_thr = 0.5
     overlap_thr = 0.5
     stuff_area_limit = 64 * 64
