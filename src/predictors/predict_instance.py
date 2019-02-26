@@ -9,8 +9,8 @@ from src.predictors.predict import Predict
 
 
 class InstanceSegmentation(Predict):
-    def __init__(self):
-        Predict.__init__(self)
+    def __init__(self, images_info_path: str = 'data/annotations/mini_test.json', no_cuda: bool = True):
+        Predict.__init__(self, images_info_path, no_cuda)
         self.model = self._load_model()
 
     @property

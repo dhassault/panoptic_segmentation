@@ -13,8 +13,9 @@ from src.predictors.predict import Predict
 class SemanticSegmentation(Predict):
     """Perform the semantic segmentation on a dataset by using a PSPNet."""
 
-    def __init__(self, model_path: str = 'models/PSPNet_resnet50_1_epoch.params', ):
-        Predict.__init__(self)
+    def __init__(self, model_path: str = 'models/PSPNet_resnet50_1_epoch.params',
+                 images_info_path: str = 'data/annotations/mini_test.json', no_cuda: bool = True):
+        Predict.__init__(self, images_info_path, no_cuda)
         self.model_path = model_path
         self.model = self._load_model()
 
