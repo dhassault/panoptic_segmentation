@@ -1,3 +1,4 @@
+"""Load MSCOCO stuff dataset."""
 import os
 import pickle
 

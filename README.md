@@ -62,3 +62,5 @@ it's very bad I know but I couldn't manage the huge arrays with mxnet... I'll im
 ## To do
 - building a docker image.
 - improving accuracy by training on more epochs the semantic segmentation model.
+- adding predictor for 1 single image (have to add a method in each predictor).
+- adding visualisation.
