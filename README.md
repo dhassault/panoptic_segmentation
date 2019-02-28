@@ -23,21 +23,15 @@ For more details: http://cocodataset.org/#panoptic-2018
 
 ## Expected directories structure
 ```
-├── config
+.
 ├── data
-├── dataloaders
-├── environment.yml
-├── maskrcnn-benchmark
+├── logs
 ├── models
-├── models_parameters
 ├── notebooks
-├── panoseg.egg-info
-├── predict
 ├── README.md
 ├── requirements.txt
 ├── setup.py
-├── train
-└── utils
+└── src
 ```
 
 ## Install
