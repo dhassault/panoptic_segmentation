@@ -48,6 +48,11 @@ corresponding pytorch binaries.
 conda env create -n panoptic_segmentation --file=environment.yaml
 ``` 
 
+## Downloads
+Please download the data directory there: https://drive.google.com/file/d/1g6ZPDMqgVwdS2Ntb1YvYO4FbKF52hgFK/view?usp=sharing  
+And the models directory: https://drive.google.com/file/d/1BPO2d66gwiUCNQLuLT8IQnUFtiKsfXGA/view?usp=sharing  
+Extract everything in the root directory of this project. To have the directories structures showed above.
+
 ## Models used
 For the instance segmentation, this code uses the pre-trained mask-rcnn available on gluoncv as it is.
 For the semantic segmentation, PSPNet (resnet50) is used and trained for 1 epoch only on coco stuff dataset (with the stuff panoptic classes).
