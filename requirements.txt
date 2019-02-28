@@ -6,8 +6,8 @@ cython
 gluoncv
 jupyterlab
 matplotlib
-mxnet
-mxboard-cu100mkl
+mxnet-cu100mkl
+mxboard
 numpy=1.14.6
 Pillow-SIMD
 pycocotools
